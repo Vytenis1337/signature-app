@@ -5,7 +5,7 @@ export const LanguageContext = createContext();
 
 // Create the Provider Component
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState("en"); // Default language
+  const [language, setLanguage] = useState("lt"); // Default language
 
   // Optional: Persist language preference using localStorage
   useEffect(() => {

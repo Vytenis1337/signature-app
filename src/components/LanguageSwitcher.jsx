@@ -12,18 +12,7 @@ const LanguageSwitcher = () => {
       <span className="text-xl">
         {translations[language]["select_language"]}:{" "}
       </span>
-      <button
-        onClick={() => toggleLanguage("en")}
-        disabled={language === "en"}
-        className={`px-4 py-2 ml-2 text-xl rounded ${
-          language === "en"
-            ? "bg-blue-500 text-white"
-            : "bg-gray-200 text-black"
-        }`}
-        aria-label="Switch to English"
-      >
-        EN
-      </button>
+
       <button
         onClick={() => toggleLanguage("lt")}
         disabled={language === "lt"}
@@ -35,6 +24,18 @@ const LanguageSwitcher = () => {
         aria-label="Switch to Lithuanian"
       >
         LT
+      </button>
+      <button
+        onClick={() => toggleLanguage("en")}
+        disabled={language === "en"}
+        className={`px-4 py-2 ml-2 text-xl rounded ${
+          language === "en"
+            ? "bg-blue-500 text-white"
+            : "bg-gray-200 text-black"
+        }`}
+        aria-label="Switch to English"
+      >
+        EN
       </button>
     </div>
   );

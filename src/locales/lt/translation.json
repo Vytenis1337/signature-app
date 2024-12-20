@@ -1,13 +1,13 @@
 {
   "welcome": "Pasirašyk už klimato išsaugojimą, kaip tūkstančiai iki tavęs!",
-  "draw_instruction": "Tiesiog pieškite savo parašą langelyje žemiau, spauskite „Siųsti“ ir jis nukeliaus į didijį parašų debesį.",
+  "draw_instruction": "Tiesiog pieškite savo parašą langelyje žemiau, spauskite „Siųsti“ ir jis nukeliaus į didįjį parašų debesį.",
   "send_instruction": "Spauskite \"Siųsti\", kad pridėtumėte savo parašą.",
   "send_button": "Siųsti",
   "clear_button": "Išvalyti",
   "canvas_label": "Parašo Drobė",
   "signature_sent": "Parašas išsiųstas!",
   "canvas_cleared": "Parašo laukas išvalytas!",
-  "select_language": "Pasirinkite Kalbą",
+  "select_language": "Pasirinkite kalbą",
   "canvas_not_available": "Parašo laukas neprieinamas.",
   "canvas_context_failed": "Nepavyko gauti parašo lauko konteksto.",
   "signature_sent_success": "Parašas sėkmingai išsiųstas!"
