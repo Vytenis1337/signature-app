@@ -215,7 +215,11 @@ export default function App() {
             } cursor-crosshair bg-white rounded-lg h-auto w-full  ${
               animating ? "cursor-not-allowed" : "cursor-crosshair"
             }`}
-            style={{ aspectRatio: "5 / 3" }} // Responsive display size maintaining 5:3 aspect ratio
+            style={{
+              maxHeight: "100%",
+              maxWidth: "100%",
+              aspectRatio: "5 / 3",
+            }} // Responsive display size maintaining 5:3 aspect ratio
             onMouseDown={startDrawing}
             onMouseMove={draw}
             onMouseUp={stopDrawing}
