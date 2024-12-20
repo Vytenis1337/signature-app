@@ -13,7 +13,7 @@ const LanguageSwitcher = () => {
       <button
         onClick={() => toggleLanguage("en")}
         disabled={language === "en"}
-        className={`px-2 py-1 ml-2 rounded ${
+        className={`px-4 py-2 ml-2 rounded ${
           language === "en"
             ? "bg-blue-500 text-white"
             : "bg-gray-200 text-black"
@@ -25,7 +25,7 @@ const LanguageSwitcher = () => {
       <button
         onClick={() => toggleLanguage("lt")}
         disabled={language === "lt"}
-        className={`px-2 py-1 ml-2 rounded ${
+        className={`px-4 py-2 ml-4 rounded ${
           language === "lt"
             ? "bg-blue-500 text-white"
             : "bg-gray-200 text-black"

@@ -35,7 +35,7 @@ export default function App() {
   const [toasts, setToasts] = useState(null);
 
   const DEFAULT_COLOR = "#000000";
-  const DEFAULT_BRUSH_SIZE = 4;
+  const DEFAULT_BRUSH_SIZE = 2;
 
   const addToast = useCallback(
     (messageKey, type) => {
@@ -56,6 +56,7 @@ export default function App() {
       addToast("canvas_not_available", "error");
       return;
     }
+
     const ctx = canvas.getContext("2d");
     if (!ctx) {
       addToast("canvas_context_failed", "error");
@@ -63,12 +64,16 @@ export default function App() {
     }
 
     const dpr = window.devicePixelRatio || 1;
-    const canvasWidth = window.innerWidth * 0.4; // 80% of the viewport width
-    const canvasHeight = canvasWidth * (3 / 5);
+    const container = canvas.parentElement; // Get the parent container
+    const containerWidth = container.offsetWidth; // Dynamically get container's width
+    const canvasWidth = containerWidth * 0.95; // Use 95% of the parent width
+    const canvasHeight = canvasWidth * (3 / 5); // Maintain the 5:3 aspect ratio
+
     canvas.width = canvasWidth * dpr;
     canvas.height = canvasHeight * dpr;
-    canvas.style.width = `${canvasWidth}px`; // Displayed width
+    canvas.style.width = `${canvasWidth}px`;
     canvas.style.height = `${canvasHeight}px`;
+
     ctx.scale(dpr, dpr);
 
     // Set default drawing settings
@@ -76,7 +81,7 @@ export default function App() {
     ctx.lineJoin = "round";
     ctx.lineWidth = DEFAULT_BRUSH_SIZE;
     ctx.strokeStyle = DEFAULT_COLOR;
-  }, [addToast]); // Empty dependency array ensures this runs only oncenly once
+  }, [addToast]);
 
   // Update stroke color when `color` state changes
 
@@ -146,8 +151,8 @@ export default function App() {
     }
 
     return {
-      offsetX: e.nativeEvent.offsetX * scaleX,
-      offsetY: e.nativeEvent.offsetY * scaleY,
+      offsetX: (e.nativeEvent.offsetX || e.clientX - rect.left) * scaleX,
+      offsetY: (e.nativeEvent.offsetY || e.clientY - rect.top) * scaleY,
     };
   };
 
@@ -191,60 +196,55 @@ export default function App() {
   }, [addToast, isPulsing]);
 
   return (
-    <div className="flex flex-col items-center p-8 h-screen bg-gray-100 relative space-y-6 overflow-hidden">
+    <div className="flex flex-col items-center p-8 h-screen relative space-y-6 overflow-hidden">
       <h1 className="text-5xl font-bold text-blue-600 mb-8">
         {translations[language]["welcome"]}
       </h1>
       <LanguageSwitcher />
-      <div className="flex flex-row gap-8">
-        <div className="flex flex-col items-center w-full max-w-4xl space-y-6">
+      <div className="flex flex-col md:flex-row gap-8 justify-center items-stretch w-full ">
+        <div className="w-full md:w-1/2 flex flex-col  justify-center items-center ">
           <div className="text-lg text-center mb-4 max-w-4xl">
             <p className="w-full max-w-[600px]">
               {translations[language]["draw_instruction"]}
             </p>
-            <p className="w-full max-w-[600px]">
-              {translations[language]["send_instruction"]}
-            </p>
           </div>
 
-          <div className="relative w-full">
-            <canvas
-              ref={canvasRef}
-              className={`touch-none ${
-                isDrawing
-                  ? "border-4 border-blue-500"
-                  : "border-2 border-gray-400"
-              } cursor-crosshair bg-white rounded-lg w-full  ${
-                animating ? "cursor-not-allowed" : "cursor-crosshair"
-              }`}
-              style={{ width: "100%", height: "auto", aspectRatio: "5 / 3" }} // Responsive display size maintaining 5:3 aspect ratio
-              onMouseDown={startDrawing}
-              onMouseMove={draw}
-              onMouseUp={stopDrawing}
-              onMouseLeave={stopDrawing}
-              onTouchStart={startDrawing}
-              onTouchMove={draw}
-              onTouchEnd={stopDrawing}
-              aria-label="Signature Canvas"
-              role="img"
-            />
+          <canvas
+            ref={canvasRef}
+            className={`touch-none ${
+              isDrawing
+                ? "border-4 border-blue-500"
+                : "border-2 border-gray-400"
+            } cursor-crosshair bg-white rounded-lg h-auto w-full  ${
+              animating ? "cursor-not-allowed" : "cursor-crosshair"
+            }`}
+            style={{ aspectRatio: "5 / 3" }} // Responsive display size maintaining 5:3 aspect ratio
+            onMouseDown={startDrawing}
+            onMouseMove={draw}
+            onMouseUp={stopDrawing}
+            onMouseLeave={stopDrawing}
+            onTouchStart={startDrawing}
+            onTouchMove={draw}
+            onTouchEnd={stopDrawing}
+            aria-label="Signature Canvas"
+            role="img"
+          />
 
-            {/* Loader Overlay */}
-            {animating && (
+          {/* Loader Overlay */}
+          {/* {animating && (
               <div className="absolute inset-0 flex items-center justify-center z-10">
-                <div className="loader"></div> {/* Loader Animation */}
+                <div className="loader"></div> 
               </div>
-            )}
-          </div>
+            )} */}
 
           <div className="flex justify-center items-center space-x-12 mt-4">
             <button
               onClick={clearCanvas}
               disabled={animating || !hasDrawn}
               className={`px-12 py-6 bg-blue-500 text-white font-bold rounded-md 
-      hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 
-      transition ease-in-out duration-200 
-      ${animating || !hasDrawn ? "opacity-50 cursor-not-allowed" : ""}`}
+          hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 
+          transition ease-in-out duration-200 
+          ${animating || !hasDrawn ? "opacity-50 cursor-not-allowed" : ""}`}
               style={{ minWidth: "200px" }} // Larger size for "Send" button
             >
               {translations[language]["send_button"]}
@@ -264,9 +264,9 @@ export default function App() {
               }}
               disabled={animating || !hasDrawn}
               className={`px-6 py-3 bg-red-500 text-white font-semibold rounded-md 
-      hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 
-      transition ease-in-out duration-200 
-      ${animating || !hasDrawn ? "opacity-50 cursor-not-allowed" : ""}`}
+          hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 
+          transition ease-in-out duration-200 
+          ${animating || !hasDrawn ? "opacity-50 cursor-not-allowed" : ""}`}
               style={{ minWidth: "120px" }} // Smaller size for "Clear" button
             >
               {translations[language]["clear_button"]}
@@ -278,12 +278,12 @@ export default function App() {
           )} */}
         </div>
 
-        <div className="w-full max-w-4xl mx-auto text-center max-h-[70vh] overflow-hidden flex justify-center items-center">
+        <div className="w-full md:w-1/2 flex justify-center items-center ">
           <img
             ref={gifRef}
             src="/signature_cloud.gif"
             alt="Animated cloud representing collected signatures"
-            className={`rounded-lg shadow-lg max-w-full max-h-full object-contain ${
+            className={` max-w-full max-h-full object-contain ${
               isPulsing ? "animate-pulse-effect" : ""
             }`}
             loading="lazy"
