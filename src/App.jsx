@@ -123,7 +123,7 @@ export default function App() {
 
     // Convert canvas to image before clearing
     const dataURL = canvasRef.current.toDataURL("image/png");
-    console.log("App - Captured Signature Data URL:", dataURL); // Debugging
+    // Debugging
 
     setSignatureImage(dataURL);
 
@@ -172,9 +172,6 @@ export default function App() {
 
     const endX = gifRect.left + gifRect.width / 2 + offsetX;
     const endY = gifRect.top + gifRect.height / 2 + offsetY;
-
-    console.log("Start:", { x: canvasRect.left, y: canvasRect.top });
-    console.log("End:", { x: endX, y: endY });
 
     return {
       start: { x: canvasRect.left, y: canvasRect.top },
@@ -297,7 +294,6 @@ export default function App() {
           src={signatureImage}
           calculatePositions={calculatePositions}
           onAnimationEnd={() => {
-            console.log("App - Animation Ended");
             setAnimating(false);
             setIsPulsing(true);
           }}
