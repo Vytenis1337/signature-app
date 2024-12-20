@@ -1,0 +1,14 @@
+{
+  "welcome": "Sign for climate preservation, like thousands before you!",
+  "draw_instruction": "Simply draw your signature with your finger in the box below, and it will be sent to the great cloud of signatures.",
+  "send_instruction": "Press \"Send\" to add your signature.",
+  "send_button": "Send",
+  "clear_button": "Clear",
+  "canvas_label": "Signature Canvas",
+  "signature_sent": "Signature sent!",
+  "canvas_cleared": "Signature field cleared!",
+  "select_language": "Select Language",
+  "canvas_not_available": "Signature field is not available.",
+  "canvas_context_failed": "Failed to retrieve signature field context.",
+  "signature_sent_success": "Signature successfully sent!"
+}
