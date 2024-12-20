@@ -197,13 +197,13 @@ export default function App() {
 
   return (
     <div className="flex flex-col items-center p-8 h-screen relative space-y-6 overflow-hidden">
-      <h1 className="text-5xl font-bold text-blue-600 mb-8">
+      <h1 className="text-6xl font-bold text-blue-600 mb-8">
         {translations[language]["welcome"]}
       </h1>
       <LanguageSwitcher />
       <div className="flex flex-col md:flex-row gap-8 justify-center items-stretch w-full ">
         <div className="w-full md:w-1/2 flex flex-col  justify-center items-center ">
-          <div className="text-lg text-center mb-4 max-w-4xl">
+          <div className="text-xl text-center mb-4 max-w-4xl">
             <p className="w-full max-w-[600px]">
               {translations[language]["draw_instruction"]}
             </p>
@@ -241,7 +241,7 @@ export default function App() {
             <button
               onClick={clearCanvas}
               disabled={animating || !hasDrawn}
-              className={`px-12 py-6 bg-blue-500 text-white font-bold rounded-md 
+              className={`px-12 py-6 bg-blue-500 text-xl text-white font-bold rounded-md 
           hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 
           transition ease-in-out duration-200 
           ${animating || !hasDrawn ? "opacity-50 cursor-not-allowed" : ""}`}
@@ -263,7 +263,7 @@ export default function App() {
                 addToast("canvas_cleared", "info");
               }}
               disabled={animating || !hasDrawn}
-              className={`px-6 py-3 bg-red-500 text-white font-semibold rounded-md 
+              className={`px-6 py-3 bg-red-500 text-lg text-white font-semibold rounded-md 
           hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 
           transition ease-in-out duration-200 
           ${animating || !hasDrawn ? "opacity-50 cursor-not-allowed" : ""}`}

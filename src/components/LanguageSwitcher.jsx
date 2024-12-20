@@ -9,11 +9,13 @@ const LanguageSwitcher = () => {
 
   return (
     <div className="language-switcher mb-4">
-      <span>{translations[language]["select_language"]}: </span>
+      <span className="text-xl">
+        {translations[language]["select_language"]}:{" "}
+      </span>
       <button
         onClick={() => toggleLanguage("en")}
         disabled={language === "en"}
-        className={`px-4 py-2 ml-2 rounded ${
+        className={`px-4 py-2 ml-2 text-xl rounded ${
           language === "en"
             ? "bg-blue-500 text-white"
             : "bg-gray-200 text-black"
@@ -25,7 +27,7 @@ const LanguageSwitcher = () => {
       <button
         onClick={() => toggleLanguage("lt")}
         disabled={language === "lt"}
-        className={`px-4 py-2 ml-4 rounded ${
+        className={`px-4 py-2 ml-4 text-xl rounded ${
           language === "lt"
             ? "bg-blue-500 text-white"
             : "bg-gray-200 text-black"
