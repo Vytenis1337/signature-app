@@ -9,7 +9,7 @@ body {
 }
 
 body {
-  @apply font-jost;
+  @apply font-nunito;
   overflow: hidden; /* Prevent scrolling on the body */
 }
 

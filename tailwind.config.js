@@ -20,7 +20,7 @@ module.exports = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        jost: ["Jost", "sans-serif"], // Add Jost as a custom font
+        nunito: ["Nunito", "sans-serif"], // Add Jost as a custom font
       },
     },
   },
