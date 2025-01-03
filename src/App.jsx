@@ -193,7 +193,7 @@ export default function App() {
   }, [addToast, isPulsing]);
 
   return (
-    <div className="flex flex-col items-center p-8 h-screen relative space-y-6 overflow-hidden">
+    <div className="touch-none flex flex-col items-center p-8 h-screen relative space-y-6 overflow-hidden">
       <h1 className="text-6xl font-bold text-blue-600 mb-8">
         {translations[language]["welcome"]}
       </h1>
